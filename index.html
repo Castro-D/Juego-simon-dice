@@ -5,11 +5,49 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel='stylesheet' href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     
 </head>
 <body>
+    <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            SIMON DICE
+          </div> 
+        </div>
+    </div>
+    <div class="container" id='tablero'>
+        <div class="row">
+          <div class="col-sm-6">
+            <div id='boton-rojo'>A</div>
+          </div>
+          <div class="col-sm-6">
+            <div id='boton-verde'>B</div>
+          </div>
+        </div>
+        <div class='row'>
+            <div class='col-sm-6'>
+                <div id='boton-amarillo'>C</div>
+            </div>
+            <div class='col-sm-6'>
+                <div id='boton-azul'>D</div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            1 of 3
+          </div>
+          <div class="col-6">
+            2 of 3 (wider)
+          </div>
+          <div class="col">
+            3 of 3
+          </div>
+        </div>
+    </div>
     <script src='main.js'></script>
 </body>
 </html>
