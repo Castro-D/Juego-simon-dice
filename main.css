@@ -3,6 +3,8 @@ body, html {
 }
 .botones {
     height: 200px;
+    filter: brightness(40%);
+    transition: filter 500ms;
 }
 
 #boton-rojo {
