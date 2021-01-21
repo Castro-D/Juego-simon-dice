@@ -3,7 +3,7 @@ body, html {
 }
 .botones {
     height: 200px;
-    filter: brightness(40%);
+    filter: brightness(0.4);
     transition: filter 500ms;
 }
 
