@@ -1,17 +1,12 @@
+let secuenciaBot = [];
+let secuenciaHumano = [];
+let ronda = 0;
+bloquearUsuario()
+document.querySelector('button[type=button]').onclick = function(){
+    resetear()
+    manejarRonda()
+} 
 
-const $listaBotones = document.querySelectorAll('.botones');
-const $jugadaBot = $listaBotones[Math.floor(Math.random() * $listaBotones.length)];
-const secuenciaBot = [];
-secuenciaBot.push($jugadaBot);
-
-secuenciaBot.forEach(function(movimientoBot){
-    resaltarBoton(movimientoBot)
-})
-
-const secuenciaHumano = [];
-document.querySelectorAll('.botones').forEach(function($boton){
-    $boton.onclick = manejarInputUsuario
-})
 
 function resaltarBoton(movimientoBot){
     movimientoBot.style.filter = 'brightness(1)';
@@ -27,9 +22,60 @@ function manejarInputUsuario(e){
     const botonMaquina = secuenciaBot[secuenciaHumano.length - 1];
     if($boton.id !== botonMaquina.id){
         perder();
-        }
+        return;
+    }
+    if(secuenciaBot.length == secuenciaHumano.length){
+        console.log('ganaste')
+        ronda++
+        setTimeout(function(){
+            manejarRonda()
+        }, 1000)
+    }
+
     }
 
 function perder(){
     alert('Perdiste.')
+    bloquearUsuario()
+
 }
+
+function resetear(){
+    secuenciaBot = [];
+    secuenciaHumano = [];
+}
+
+function manejarEstado(){
+}
+
+function bloquearUsuario(){
+    document.querySelectorAll('.botones').forEach(function($boton){
+        $boton.onclick = function(){
+
+        };
+    });
+
+    }
+
+function manejarRonda(){
+    const $listaBotones = document.querySelectorAll('.botones');
+    const $jugadaBot = $listaBotones[Math.floor(Math.random() * $listaBotones.length)];
+    secuenciaBot.push($jugadaBot);
+
+    secuenciaBot.forEach(function(movimientoBot, index){
+        const RETRASO_MS = (index + 1) * 1000
+        setTimeout(function(){
+            resaltarBoton(movimientoBot);
+        }, RETRASO_MS)
+})
+    const RETRASO_TURNO_JUGADOR = (secuenciaBot.length + 1) * 1000
+    setTimeout(function(){
+        document.querySelectorAll('.botones').forEach(function($boton){
+            $boton.onclick = manejarInputUsuario
+
+    })
+    
+}, RETRASO_TURNO_JUGADOR)
+}
+
+
