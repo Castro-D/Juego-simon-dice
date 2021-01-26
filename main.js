@@ -7,7 +7,6 @@ document.querySelector('button[type=button]').onclick = function(){
     manejarRonda()
 } 
 
-
 function resaltarBoton(movimientoBot){
     movimientoBot.style.filter = 'brightness(1)';
     setTimeout(function() {
@@ -25,19 +24,18 @@ function manejarInputUsuario(e){
         return;
     }
     if(secuenciaBot.length == secuenciaHumano.length){
-        console.log('ganaste')
-        ronda++
+        bloquearUsuario();
+        ronda++;
+        secuenciaHumano = [];
         setTimeout(function(){
-            manejarRonda()
+            manejarRonda();
         }, 1000)
     }
-
     }
-
+ 
 function perder(){
     alert('Perdiste.')
     bloquearUsuario()
-
 }
 
 function resetear(){
@@ -77,5 +75,4 @@ function manejarRonda(){
     
 }, RETRASO_TURNO_JUGADOR)
 }
-
 
