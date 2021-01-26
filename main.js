@@ -2,8 +2,12 @@ let secuenciaBot = [];
 let secuenciaHumano = [];
 let ronda = 0;
 bloquearUsuario()
-document.querySelector('button[type=button]').onclick = function(){
+$botonStart = document.querySelector('button[type=button]')
+document.querySelector('button[type=button]').onclick = function(e){
     resetear()
+    ronda++
+    actualizarRonda(ronda)
+    $botonStart.disabled = true;
     manejarRonda()
 } 
 
@@ -21,13 +25,15 @@ function manejarInputUsuario(e){
     const botonMaquina = secuenciaBot[secuenciaHumano.length - 1];
     if($boton.id !== botonMaquina.id){
         perder();
+        $botonStart.disabled = false;
         return;
     }
     if(secuenciaBot.length == secuenciaHumano.length){
         bloquearUsuario();
-        ronda++;
         secuenciaHumano = [];
         setTimeout(function(){
+            ronda++;
+            actualizarRonda(ronda);
             manejarRonda();
         }, 1000)
     }
@@ -41,6 +47,7 @@ function perder(){
 function resetear(){
     secuenciaBot = [];
     secuenciaHumano = [];
+    ronda = 0;
 }
 
 function manejarEstado(){
@@ -49,7 +56,6 @@ function manejarEstado(){
 function bloquearUsuario(){
     document.querySelectorAll('.botones').forEach(function($boton){
         $boton.onclick = function(){
-
         };
     });
 
@@ -76,3 +82,7 @@ function manejarRonda(){
 }, RETRASO_TURNO_JUGADOR)
 }
 
+function actualizarRonda(ronda){
+    document.querySelector('strong').textContent = ronda;
+
+}
