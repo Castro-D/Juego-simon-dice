@@ -1,9 +1,10 @@
 let secuenciaBot = [];
 let secuenciaHumano = [];
 let ronda = 0;
+let turnoMaquina = true;
 bloquearUsuario()
 $botonStart = document.querySelector('button[type=button]')
-document.querySelector('button[type=button]').onclick = function(e){
+document.querySelector('button[type=button]').onclick = function(){
     resetear()
     ronda++
     actualizarRonda(ronda)
@@ -25,6 +26,8 @@ function manejarInputUsuario(e){
     const botonMaquina = secuenciaBot[secuenciaHumano.length - 1];
     if($boton.id !== botonMaquina.id){
         perder();
+        let $estado = document.querySelector('#informacion-estado');
+        $estado.textContent = 'Click en start para jugar';
         $botonStart.disabled = false;
         return;
     }
@@ -50,7 +53,13 @@ function resetear(){
     ronda = 0;
 }
 
-function manejarEstado(){
+function manejarEstado(turnoMaquina){
+    if (turnoMaquina){
+        document.querySelector('#informacion-estado').textContent = 'Es el turno de la maquina';
+    }
+    if (turnoMaquina === false){
+        document.querySelector('#informacion-estado').textContent = 'Es tu turno';
+    }
 }
 
 function bloquearUsuario(){
@@ -62,6 +71,8 @@ function bloquearUsuario(){
     }
 
 function manejarRonda(){
+    turnoMaquina = true;
+    manejarEstado(turnoMaquina);
     const $listaBotones = document.querySelectorAll('.botones');
     const $jugadaBot = $listaBotones[Math.floor(Math.random() * $listaBotones.length)];
     secuenciaBot.push($jugadaBot);
@@ -74,6 +85,8 @@ function manejarRonda(){
 })
     const RETRASO_TURNO_JUGADOR = (secuenciaBot.length + 1) * 1000
     setTimeout(function(){
+        turnoMaquina = false;
+        manejarEstado(turnoMaquina);
         document.querySelectorAll('.botones').forEach(function($boton){
             $boton.onclick = manejarInputUsuario
 
