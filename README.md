@@ -3,4 +3,4 @@ Primer proyecto javascript
 
 Juego de memoria, realizado con javascript, html y bootstrap para los estilos.
 
-Demo: 
+Demo: https://castro-d.github.io/simon-dice-gh-pages/
